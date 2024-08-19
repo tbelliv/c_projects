@@ -1,0 +1,9 @@
+a = 5;
+c = (b = a + 2) - (a = 1);
+breakdown:
+
+c = (b=7) - (a=1)
+c = 7 - 1
+c = 6
+
+//note that if (a = 1) is evaluated first, which may happen with some compiler, the result could turn out to be 2. It's best to avoid these operations with multiple assignments.

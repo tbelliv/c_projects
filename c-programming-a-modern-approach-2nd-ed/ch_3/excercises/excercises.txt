@@ -1,0 +1,90 @@
+1. What output do the following calls of print f produce?
+
+(a) printf("%6d,%4d" , 86, 1040);
+
+(b) printf ("%12.5e", 30.253);
+
+(c) printf ("%. 4f" , 83.162);
+
+(d) printf("%-6.2g", .0000009979);
+
+1.
+
+a. ****86,1040
+b. 3.02530e+01
+c. 83.1620
+d. 9.9e-07
+
+2. Write calls of printf that display a float variable x in the following formats.
+
+(a) Exponential notation; left-justified in a field of size 8; one digit after the decimal point.
+
+(b) Exponential notation; right-justified in a field of size 10; six digits after the decimal point.
+
+(c) Fixed decimal notation: left-justified in a field of size 8; three digits after the decimal point.
+
+(d) Fixed decimal notation; right-justified in a field of size 6: no digits after the decimal point.
+
+2. 
+
+(a) printf("%-8.1e",x);
+
+(b) printf("%10.6e",x);
+
+(c) printf("%-8.3f",x);
+
+(d) printf("%6.0f",x);
+
+3. For each of the following pairs of scanf format strings, indicate whether or not the two strings are equivalent. If they're not. show how they can be distinguished.
+
+(a) " %d" versus " %d"
+
+(b) "%d-%d-%d" versus "%d -%d -%d"
+
+(c) "%f" versus "%f "
+
+(d) "%f,%f" versus "%f, %f"
+
+3.Equivalent
+
+(b) Not Equivalent
+
+(c) Not Equivalent
+
+(d) Not Equivalent
+
+*4. Suppose that we call scanf as follows; scanf("%d%f%d", &i, &x, &j) ;
+
+If the user enters
+
+10.3 5 6
+
+what will be the values of i. x. and j after the call? (Assume that i and j are int variables and x is a float
+
+4.
+
+i = 10
+j = 5.0 //.3 is treated as a single united. scanf does not recognize '.' and '3' as seperate tokens. they are one invalid token because there is no leading digit.
+x = 10 
+
+5. Suppose that we call scanf as follows:
+
+scanf("%f%d%f", &x, &i, &y) ;
+
+If the user enters
+
+12.3 45.6 789
+
+what will be the values of x. i. and y after the call? (Assume that x and y are float vari¬ ables and i is sin int variable.)
+
+5.
+
+x = 12.3
+i = 45
+y = 0.6 //the trunc'd 0.6 was stored and read into the final %f before 789 as .6 was invalid for i but when 0.6 is read for %f, it is valid.
+
+6. n/a
+
+6. n/a
+
+

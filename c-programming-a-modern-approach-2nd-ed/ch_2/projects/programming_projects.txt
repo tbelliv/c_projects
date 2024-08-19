@@ -1,0 +1,228 @@
+Programming Projects
+
+1. Write a program that uses printf to display the following picture on the screen:
+
+       *
+*     *
+ *   *
+   *
+
+1. 
+
+//extremely basic. this code does what i think the q is asking for.
+
+#include<stdio.h>
+
+int main(void){
+
+    printf("\n");
+    printf("\n       *\n");
+    printf("\n*     *\n");
+    printf("\n *   *\n");
+    printf("\n   *\n");
+    printf("\n\n");
+
+    return 0;
+}
+
+2. Write a program that computes the volume of a sphere with a 10-meler radius, using the formula v = 4/37tr\ Write the fraction 4/3 as 4 . Of /3 . Of. (Try writing it as 4/3. What hap¬ pens?) Hint: C doesn't have an exponentiation operator, so you'll need to multiply r by itself twice to compute r 3 .
+
+2. 
+
+#include <stdio.h>
+#define PI 3.14159265358979323846
+
+int main(void) {
+    float radius = 10.0;
+    float volume;
+
+    volume = (4.0 / 3.0) * PI * (radius * radius * radius);
+
+    printf("The volume of the sphere with radius %.2f meters is: %.2f cubic meters\n", radius, volume);
+
+    return 0;
+}
+
+3. Modify the program of Programming Project 2 so that it prompts the user to enter the radius of the sphere.
+
+3.
+
+#include <stdio.h>
+#define PI 3.14159265358979323846
+
+int main(void) {
+    float radius;
+    float volume;
+
+    printf("\nEnter a value for radius:\n");
+
+    scanf("%f", &radius);
+
+    volume = (4.0 / 3.0) * PI * (radius * radius * radius);
+
+    printf("The volume of the sphere with radius %.2f meters is: %.2f cubic meters\n", radius, volume);
+
+    return 0;
+}
+
+4. Write a program that asks the user to enter a dollars-and-cents amount, then displays the amount with 5% tax added:
+Enter an amount: 100.00 With tax added: $105.00
+
+#include<stdio.h>
+#define TAX 1.05
+
+int main(void){
+
+    float pre_tax_total;
+    float after_tax_total;
+
+    printf("\nPlease enter your pre-tax total:\n");
+    scanf("%f", &pre_tax_total);
+
+    after_tax_total = pre_tax_total * TAX;
+
+    printf("\nThe after tax total of the entered value of %.2f is: %.2f\n", pre_tax_total, after_tax_total);
+
+    return 0;
+}
+
+5. Write a program that asks the user to enter a value for x and then displays the value of the following polynomial:
+
+3x^5 + 2x^4 - 5x^3 - x^2 + 7x - 6
+
+Hint: C doesn’t have an exponentiation operator, so you’ll need to multiply x by itself repeatedly in order to compute the powers of x. (For example, x * x * x is x cubed.)
+
+5. 
+
+#include <stdio.h>
+
+int main(void) {
+    int x;
+    int result;
+
+    printf("\nPlease enter a whole number for x:\n");
+    scanf("%d", &x);
+
+    printf("\nGreat, now let's solve this polynomial:\n\n3x^5 + 2x^4 - 5x^3 - x^2 + 7x - 6\n\n");
+
+    printf("\nFirst, let's replace these exponents with arithmetic that will work in our C program.\n");
+
+    printf("\n (3*(x*x*x*x*x)) + (2*(x*x*x*x)) - (5*(x*x*x)) - (x*x) + (7*x) - 6 \n");
+
+    result = (3 * (x * x * x * x * x)) + 
+             (2 * (x * x * x * x)) - 
+             (5 * (x * x * x)) - 
+             (x * x) + 
+             (7 * x) - 
+             6;
+
+    printf("\nThe result of this polynomial is: %d\n\n", result);
+
+    return 0;
+}
+
+6. Modify the program of Programming Project 5 so that the polynomial is evaluated using the following formula:
+    ((((3jc + 2)x - 5)x - 1 \x + 7).c - 6
+    Note that the modified program performs fewer multiplications. This technique for evaluat¬ ing polynomials is known as Horner's Rule.
+
+6. 
+
+#include <stdio.h>
+
+int main(void) {
+    int x;
+    int result;
+
+    printf("\nPlease enter a whole number for x:\n");
+    scanf("%d", &x);
+
+    result = (((((3 * x + 2) * x - 5) * x - 1) * x + 7) * x - 6);
+
+    printf("\nThe result of this polynomial is: %d\n\n", result);
+
+    return 0;
+}
+
+7.  Write a program that asks the user to enter a U.S. dollar amount and then shows how to pay that amount using the smallest number of $20, $10, $5, and $1 bills:
+
+Enter a dollar amount: 93
+
+$20 bills: 4 
+$10 bills: 1 
+$5 bills: 0 
+$1 bills: 3
+
+Hint: Divide the amount by 20 to determine the number of $20 bills needed, and then reduce the amount by the total value of the $20 bills. Repeat for the other bill sizes. Be sure to use integer values throughout, not floating-point numbers.
+
+7. 
+
+#include <stdio.h>
+
+int main(void) {
+    int amount;
+    int twen, ten, fiv, one;
+
+    printf("\nPlease enter a dollar amount (whole number):\n");
+    scanf("%d", &amount);
+
+    twen = amount / 20;
+    amount -= twen * 20;
+
+    ten = amount / 10;
+    amount -= ten * 10;
+
+    fiv = amount / 5;
+    amount -= fiv * 5;
+
+    printf("\n$20 bills: %d\n", twen);
+    printf("$10 bills: %d\n", ten);
+    printf("$5 bills: %d\n", fiv);
+    printf("$1 bills: %d\n", one);
+
+    return 0;
+}
+
+8. Write a program that calculates the remaining balance on a loan after the first, second, and third monthly payments:
+
+Enter amount of loan: 20000.00 Enter interest rate: 6.0 Enter monthly payment: 386.66
+
+Balance remaining after first payment: $19713.34 Balance remaining after second payment: $19425.25 Balance remaining after third payment: $19135.71
+
+Display each balance with two digits after the decimal point. Hint: Each month, the balance is decreased by the amount of the payment, but increased by the balance limes the monthly interest rate. To find the monthly interest rate, convert the interest rate entered by the user to a percentage and divide it by 12.
+
+8.
+
+#include <stdio.h>
+
+int main(void) {
+    double loanAmount, annualRate, monthlyPayment;
+    double monthlyRate, balance;
+    int i;
+
+    printf("Enter amount of loan: ");
+    scanf("%lf", &loanAmount);
+
+    printf("Enter interest rate: ");
+    scanf("%lf", &annualRate);
+
+    printf("Enter monthly payment: ");
+    scanf("%lf", &monthlyPayment);
+
+    monthlyRate = (annualRate / 100) / 12;
+    balance = loanAmount;
+
+    for (i = 1; i <= 3; i++) {
+        balance = balance * (1 + monthlyRate);
+        balance = balance - monthlyPayment;
+
+        if (i == 1) {
+            printf("Balance remaining after 1st payment: $%.2f\n", balance);
+        } else if (i == 2) {
+            printf("Balance remaining after 2nd payment: $%.2f\n", balance);
+        } else if (i == 3) {
+            printf("Balance remaining after 3rd payment: $%.2f\n", balance);
+        }
+    }
+
+    return 0;
+}

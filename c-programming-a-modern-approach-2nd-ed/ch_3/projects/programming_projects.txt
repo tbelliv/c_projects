@@ -1,0 +1,221 @@
+1.  Write a program that accepts a date from the user in the form mm/dd/yyyy and then dis¬ plays it in the form yyyymmdd :
+
+Enter a date (mm/dd/yyyy): 2/17/2011 You entered the date 20110217
+
+1. 
+
+#include <stdio.h>
+
+int main(void) {
+    char mm[3];
+    char dd[3];
+    char yyyy[5];
+
+    printf("\nPlease enter a date in mm/dd/yyyy format. Please include '/'.\n");
+
+    scanf("%2s/%2s/%4s", mm, dd, yyyy);
+
+    printf("%s%s%s\n", mm, dd, yyyy);
+
+    return 0;
+}
+
+2. Write a program that formats product information entered by the user. A session with the program should look like this:
+
+Enter item number: 583 
+Enter unit price: 13.5
+
+Enter purchase date (mm/dd/yyyy): 10/24/2010
+
+Item 583
+Unit Price $13.50
+Purchase Date 10/24/2010
+
+The item number and date should be left justified; the unit price should be right justified. Allow dollar amounts up to $9999.99. Hint: Use tabs to line up the columns.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void) {
+
+    int item_number;
+    char month[3];
+    char day[3];
+    char year[5];
+    float unit_price;
+
+    printf("Enter an item number:\n");
+    scanf("%d", &item_number);
+
+    printf("Enter a purchase date. Please enter only whole numbers in mm/dd/yyyy format:\n");
+    scanf("%2s/%2s/%4s", month, day, year);
+
+    printf("Enter the item unit price:\n");
+    scanf(" %f", &unit_price);
+
+    printf("\nYour record is as follows:\n");
+
+    printf("Item Number: %-8d\n", item_number);
+    printf("Unit Price:  %8.2f\n", unit_price);
+    printf("Date:        %s/%s/%s\n", month, day, year);
+
+    return 0;
+}
+
+3. Books are identified by an International Standard Book Number (ISBN). ISBNs assigned after January I. 2007 contain 13 digits, arranged in five groups, such as 978-0-393-97950-3. (Older ISBNs use 10 digits.) The first group (the GSI prefix) is currently either 978 or 979. The group identifier specifies the language or country of origin (for example. 0 and 1 are used in English-speaking countries). The publisher code identifies the publisher (393 is the code for W. W. Norton). The item number is assigned by the publisher to identify a specific book (97950 is the code for this book). An ISBN ends with a check digit that’s used to verify the accuracy of the preceding digits. Write a program that breaks down an ISBN entered by the user:
+
+Enter ISBN: 978-0-393-97950-3 GSI prefix: 978 Group identifier: 0 Publisher code: 393 Item number: 97950 Check digit: 3
+
+Note: The number of digits in each group may vary: you can't assume that groups have the lengths shown in this example. Test your program with actual ISBN values (usually found on the back cover of a book and on the copyright page).
+
+3.
+
+#include <stdio.h>
+
+typedef struct {
+    int gsi;
+    int group_id;
+    int pub_code;
+    int item_num;
+    int check_digit;
+} isbn;
+
+int main(void) {
+    isbn user;
+
+    printf("\nWelcome to ISBN creator.\n");
+
+    printf("\nEnter the GSI prefix:\n");
+    scanf("%d", &user.gsi);
+
+    printf("\nEnter the Group ID:\n");
+    scanf("%d", &user.group_id);
+
+    printf("\nEnter the Publisher code:\n");
+    scanf("%d", &user.pub_code);
+
+    printf("\nEnter the item number:\n");
+    scanf("%d", &user.item_num);
+
+    printf("\nEnter the check digit:\n");
+    scanf("%d", &user.check_digit);
+
+    printf("\nThe ISBN you entered is: %d-%d-%d-%d-%d\n", 
+           user.gsi, user.group_id, user.pub_code, user.item_num, user.check_digit);
+
+    return 0;
+}
+
+4. Write a program that prompts the user to enter a telephone number in the form (xxx) xxxxxxx and then displays the number in the form xxx.xxx.xxx:
+Enter phone number [ (xxx) xxx-xxxx]: (404) 817-6900 You entered 404.817.6900
+
+4.
+
+#include <stdio.h>
+
+typedef struct {
+    char areacode[4];
+    char firstthree[4];
+    char lastfour[5];
+} phone;
+
+int main(void) {
+    phone number;
+
+    printf("\nPlease enter your phone number in the following format:\n");
+    printf("(xxx) xxx-xxxx\n");
+
+    scanf("(%3s) %3s-%4s", number.areacode, number.firstthree, number.lastfour);
+
+    printf("%s.%s.%s\n", number.areacode, number.firstthree, number.lastfour);
+
+    return 0;
+}
+
+5. Write a program that asks the user to enter the numbers from I to 16 (in any order) and then displays the numbers in a 4 by 4 arrangement, followed by the sums of the rows, columns, and diagonals:
+
+Enter the numbers from 1 to 16 in any order:
+
+16 3 2 13 5 10 11 8 9 6 7 12 4 15 14 1
+
+Programming Projects 51
+
+16 3 2 13
+
+5 10 11 8
+
+9 6 7 12
+
+4 15 14 1
+
+Row sums: 34 34 34 34 Column sums: 34 34 34 34 Diagonal sums: 34 34
+
+If the row, column, and diagonal sums are all the same (as they are in this example), the numbers are said to form a magic square. The magic square shown here appears in a 1514 engraving by artist and mathematician Albrecht Diirer. (Note that the middle numbers in the last row give the date of the engraving.)
+
+5.
+
+#include <stdio.h>
+
+#define SIZE 4
+
+typedef struct {
+    int square[SIZE][SIZE];
+} MagicSquare;
+
+void printSquare(MagicSquare ms) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            printf("%d ", ms.square[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void calculateSums(MagicSquare ms) {
+    int rowSum[SIZE] = {0};
+    int colSum[SIZE] = {0};
+    int diagSum1 = 0, diagSum2 = 0;
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            rowSum[i] += ms.square[i][j];
+            colSum[j] += ms.square[i][j];
+        }
+        diagSum1 += ms.square[i][i];
+        diagSum2 += ms.square[i][SIZE - i - 1];
+    }
+
+    printf("\nRow sums: ");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d ", rowSum[i]);
+    }
+    
+    printf("\nColumn sums: ");
+    for (int i = 0; i < SIZE; i++) {
+        printf("%d ", colSum[i]);
+    }
+    
+    printf("\nDiagonal sums: %d %d\n", diagSum1, diagSum2);
+}
+
+int main(void) {
+    MagicSquare ms;
+
+    printf("Please enter the numbers from 1 to 16 in any order:\n");
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            scanf("%d", &ms.square[i][j]);
+        }
+    }
+
+    printf("\nThe magic square is:\n");
+    printSquare(ms);
+
+    calculateSums(ms);
+
+    return 0;
+}
+
+6. n/A
+
+6. n/a
